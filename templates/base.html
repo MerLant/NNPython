@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{% block title %}Портал «Нарушениям.Нет»{% endblock %}</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Нарушениям.Нет</a>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+					{% if current_user.is_authenticated %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('statements') }}"
+							>Мои заявления</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('logout') }}"
+							>Выйти</a
+						>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}"
+							>Войти</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}"
+							>Регистрация</a
+						>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+		<div class="container mt-4">
+			{% with messages = get_flashed_messages(with_categories=true) %} {%
+			if messages %} {% for category, message in messages %}
+			<div class="alert alert-{{ category }}">{{ message }}</div>
+			{% endfor %} {% endif %} {% endwith %} {% block content %}{%
+			endblock %}
+		</div>
+	</body>
+</html>

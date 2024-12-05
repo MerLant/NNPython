@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}Создать заявление{% endblock %} {%
+block content %}
+<h2>Создать заявление</h2>
+<form method="POST">
+	{{ form.hidden_tag() }}
+	<div class="form-group">
+		{{ form.car_number.label }} {{ form.car_number(class="form-control") }}
+	</div>
+	<div class="form-group">
+		{{ form.description.label }} {{ form.description(class="form-control",
+		rows=5) }}
+	</div>
+	<button type="submit" class="btn btn-primary">
+		{{ form.submit.label }}
+	</button>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Мои заявления{% endblock %} {% block
+content %}
+<h2>Мои заявления</h2>
+<a href="{{ url_for('create_statement') }}" class="btn btn-success mb-3"
+	>Создать заявление</a
+>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Номер автомобиля</th>
+			<th>Описание нарушения</th>
+			<th>Статус</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for statement in statements %}
+		<tr>
+			<td>{{ statement.id }}</td>
+			<td>{{ statement.car_number }}</td>
+			<td>{{ statement.description }}</td>
+			<td>{{ statement.status }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
